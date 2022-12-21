@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block titlecontent %}Register User Table{%endblock%}
+{% block content %}
+<div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Register user </h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center"><b>No</b></th>
+                                            <th class="text-center"><b>First Name</b> </th>
+                                            <th class="text-center"><b>Last Name</b></th>
+                                            <th class="text-center"><b>Username</b></th>
+                                            <th class="text-center"><b>Email</b></th>
+
+                                            <th class="text-center"><b>Action</b></th>
+                                        </tr>
+                                    </thead>
+                                    
+                                    <tbody>
+                                    {%for users in user%}
+                                        <tr>
+                                            <td class="text-center">{{users.id}}</td>
+                                            <td class="text-center">{{users.first_name}}</td>
+                                            <td class="text-center">{{users.last_name}}</td>
+                                            <td class="text-center">{{users.username}}</td>
+                                            <td class="text-center">{{users.email}}</td>
+                                            <td class="text-center"><a href="#" type="button"  class="btn btn-danger" onclick="deletealert({{users.id}})">Delete</a></td>
+
+                                        </tr>
+                                    {%endfor%}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+</div>
+
+{%endblock%}
+{% block script %}
+function deletealert(val) {
+    swal({
+        title: "Your Profile will be deleted permanently!",
+        text: "Are you sure to proceed?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Remove Profile!",
+        cancelButtonText: "I am not sure!",
+    })
+        .then(isConfirm => {
+            if (isConfirm.value) {
+                $.ajax({
+                url: '/delete-user/'+val+'/',
+                success: function (data) {
+                    swal("Profile Removed!", "Your Profile is removed permanently!", "success");
+                    setTimeout(function() {
+                    window.location.href= "/register-user-table/";
+                    }, 2000);
+
+                }
+
+                });
+
+            }
+            else {
+                    swal("Oops", "Profile is not removed!", "error");
+                    setTimeout(function() {
+                    window.location.href= " /register-user-table/";
+                    }, 2000);
+
+            }
+        })
+}
+
+{%endblock%}

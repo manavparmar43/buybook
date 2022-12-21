@@ -1,0 +1,131 @@
+{% extends "userbase.html" %}
+{% block titlecontent %}Buy Book{%endblock%}
+{% block content %}
+
+<div id="content-wrapper" class="d-flex flex-column ">
+
+
+    <div class="card o-hidden border-0 shadow-lg my-5    w-50  align-self-center  ">
+
+        <div class="card p-0 ">
+            <!-- Nested Row within Card Body -->
+
+
+            <div class="p-5 container">
+                <div class="text-center  ">
+                    <h1 class="h4 text-gray-900 mb-4"><b>Enter Phone Number And Final Submmit</b></h1>
+                </div>
+                <form class="user" method="POST">
+                    {%csrf_token%}
+                
+                    <div class="form-group row justify-content-center" id="bookname">
+                        <div class="col-sm-10 mb-3 mb-sm-0 ">
+                            <input type="text" class="form-control form-control-user" name='bookname'
+                                   
+                                   placeholder="Book name" value="{{book.bookname}}" >
+                        </div>
+
+                    </div>
+                    <div class="form-group row justify-content-center"  id="authername">
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control form-control-user" name='authername'
+                                  
+                                   placeholder="Auther name" value="{{book.authername}}"  >
+                        </div>
+                    </div>
+                    <div class="form-group row justify-content-center" id="bookpage">
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control form-control-user" name="bookpage"
+                                  
+                                   placeholder="Book Page" value="{{book.bookpage}}"  >
+                        </div>
+
+                    </div>
+                    <div class="form-group row justify-content-center" id="bookprice">
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control form-control-user" name="bookprice"
+                                   
+                                   placeholder="Book Price" value="{{book.bookprice}}"  >
+                        </div>
+
+                    </div>
+                    <div class="form-group row justify-content-center" id="booklanguage">
+                        <div class="col-sm-10 mb-3 mb-sm-0">
+                            <input type="text" class="form-control form-control-user"
+                                    placeholder="Book language" name="booklanguage" value="{{book.booklanguage}}" >
+                        </div>
+
+                    </div>
+                    <div class="form-group row justify-content-center" id="username">
+                        <div class="col-sm-10 mb-3 mb-sm-0">
+                            <input type="text" class="form-control form-control-user"
+                                    placeholder="Enter username" name="username" value="{{request.user.username}}" >
+                        </div>
+
+                    </div>
+                    <div class="form-group row justify-content-center ">
+                        <div class="col-sm-10 mb-3 mb-sm-0 ">
+                                 <select class="form-select w-100 rounded-pill" style="height:190%; background-color:white; " id="sel1" name="buybookquantity">
+                                     <option value="{{i}}">How many book You are buying?</option>
+                                     {%for i in counter%}
+
+                                        <option value="{{i}}">{{i}}</option>
+
+                                    {%endfor%}
+                                 </select>
+
+
+
+                             </ul>
+                        </div>
+
+                    </div><br>
+                     <div class="col-sm-10 mb-3 mb-sm-0" style="margin-left:8%;">
+                         <label><b>Book Return Date</b></label>
+                        </div>
+                    <div class="form-group row justify-content-center">
+                        <div class="col-sm-10 mb-3 mb-sm-0">
+                            <input type="date" class="form-control form-control-user"
+                                   id="dates" placeholder="Enter date" name="returndate">
+                        </div>
+
+                    </div><br>
+                    <div class="form-group row justify-content-center">
+                        <div class="col-sm-10 mb-3 mb-sm-0">
+                            <input type="text" class="form-control form-control-user"
+                                   id="phone" placeholder="Enter phone" name="phone">
+                        </div>
+
+                    </div>
+                    <div class="form-group row justify-content-center">
+                        <div class="col-sm-10 mb-3 mb-sm-0">
+                            {%for messege in messages%}
+
+                            <h6 style="color:red; margin-left:10px;"><b>&#10060;&nbsp;&nbsp;{{messege}}</b></h6>
+                            {%endfor%}
+                        </div>
+
+
+                    </div>
+
+                    
+                    <div class="container w-50  justify-content-center">
+                        <button type="submit" class="btn btn-success btn-user btn-block"
+                                style="color:black; font-size:20px;" >
+                            <b>BUY BOOK</b>
+                        </button>
+                    </div>
+
+
+                </form>
+
+
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

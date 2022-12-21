@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block titlecontent %}Show Book Table{%endblock%}
+{% block content %}
+<div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Show Book Table</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center"><b>No</b></th>
+                                            <th class="text-center"><b>Book Name</b></th>
+                                            <th class="text-center"><b>Auther Name</b></th>
+                                            <th class="text-center"><b>Book Page</b></th>
+                                            <th class="text-center"><b>Book Quantity</b></th>
+                                            <th class="text-center"><b>Book Price</b></th>
+
+                                            <th class="text-center"><b>Book Language</b></th>
+
+                                            <th class="text-center"><b>Book Availability</b></th>
+                                            <th class="text-center"><b>Action</b></th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th class="text-center"><b>No</b></th>
+                                            <th class="text-center"><b>Book Name</b></th>
+                                            <th class="text-center"><b>Auther Name</b></th>
+                                            <th class="text-center"><b>Book Page</b></th>
+                                            <th class="text-center"><b>Book Quantity</b></th>
+                                            <th class="text-center"><b>Book Price</b></th>
+
+                                            <th class="text-center"><b>Book Language</b></th>
+                                            <th class="text-center"><b>Book Availability</b></th>
+                                            <th class="text-center"><b>Action</b></th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        {% for books in book%}
+                                        <tr>
+                                            <td class="text-center">{{books.id}}</td>
+                                            <td class="text-center">{{books.bookname}}</td>
+                                            <td class="text-center">{{books.authername}}</td>
+                                            <td class="text-center">{{books.bookpage}}</td>
+                                            <td class="text-center">{{books.bookquantity}}</td>
+                                            <td class="text-center">{{books.bookprice}}</td>
+                                            <td class="text-center">{{books.booklanguage}}</td>
+                                            {% if not books.deleted %}
+                                                    <td class="text-center" style="font-size:33px; color:green;"><b>&#10003;</b></td>
+
+                                                    <td class="text-center"><a href="{%url 'editbook' books.id%}" type="button" class="btn btn-primary" >Update</a>
+                                                        &nbsp;&nbsp;&nbsp;<a href="#" type="button"  class="btn btn-danger" onclick="deletealert({{books.id}})">Delete</a></td>
+                                            {% else %}
+                                                <td class="text-center">&#x274C;</td>
+                                                <td class="text-center"><abbr title="You can't update book" style="cursor: not-allowed;"><a href="{%url 'editbook' books.id%}" type="button" class="btn btn-primary"  style="pointer-events: none" >Update</a></abbr>
+                                                 &nbsp;&nbsp;&nbsp;<abbr title="You can't delete book" style="cursor: not-allowed;"><a href="{%url 'deletebook' books.id%}" type="button" class="btn btn-danger"  style="pointer-events: none" title="You can't delete book">Delete</a></abbr> <br></td>
+                                            {% endif %}
+
+
+
+                                        </tr>
+                                        {%endfor%}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+</div>
+
+{%endblock%}

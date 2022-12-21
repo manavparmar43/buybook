@@ -1,0 +1,86 @@
+{% extends "userbase.html" %}
+{% block titlecontent %}Show Book Table{%endblock%}
+{% block content %}
+<div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Your Purchasing Books</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center"><b>No</b></th>
+                                            <th class="text-center"><b>Book Name</b></th>
+                                            <th class="text-center"><b>Auther Name</b></th>
+                                            <th class="text-center"><b>Book Page</b></th>
+
+                                            <th class="text-center"><b>Book Price</b></th>
+                                            <th class="text-center"><b>Book Language</b></th>
+                                            <th class="text-center"><b>Buy Book Quantity</b></th>
+                                            <th class="text-center"><b>Buying Date</b></th>
+                                            <th class="text-center"><b>Return Date</b></th>
+                                            <th class="text-center"><b>Action</b></th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        {% for books in book%}
+                                            <tr>
+                                                <td class="text-center">{{books.bookdetail.id}}</td>
+                                                <td class="text-center">{{books.bookdetail.bookname}}</td>
+                                                <td class="text-center">{{books.bookdetail.authername}}</td>
+                                                <td class="text-center">{{books.bookdetail.bookpage}}</td>
+
+                                                <td class="text-center">{{books.bookdetail.bookprice}}</td>
+                                                <td class="text-center">{{books.bookdetail.booklanguage}}</td>
+                                                <td class="text-center" style="color:green;">{{books.buybookquantity}}</td>
+                                                <td class="text-center" >{{books.buydate}}</td>
+                                                <td class="text-center" style="color:red;"><b>{{books.returndate}}</b><br>You can't return this book on time so <br>it can return automatically</td>
+                                                    <td class="text-center"><button onclick="deletealert({{books.id}})"   class="btn btn-danger">Return</button></td>
+
+                                            </tr>
+                                        {%endfor%}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+</div>
+
+{%endblock%}
+{% block script %}
+function deletealert(val) {
+    swal({
+        title: "Your Book will be return ?",
+        text: "Are you sure to proceed?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Return Book!",
+        cancelButtonText: "I am not sure!",
+    })
+        .then(isConfirm => {
+            if (isConfirm.value) {
+                $.ajax({
+                url: '/add-return-book/'+val+'/',
+                success: function (data) {
+                    swal("Book Return!", "Your Book is return !", "success");
+                    setTimeout(function() {
+                    window.location.href= "/show-buy-book-table/";
+                    }, 2000);
+
+                }
+
+                });
+
+            }
+            else {
+                    swal("Oops", "Book is not return!", "error");
+                    setTimeout(function() {
+                    window.location.href= " /show-buy-book-table/";
+                    }, 2000);
+
+            }
+        })
+}
+{% endblock%}

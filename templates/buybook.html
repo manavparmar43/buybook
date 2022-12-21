@@ -1,0 +1,44 @@
+{% extends "userbase.html" %}
+{% block titlecontent %}Buy Book Table{%endblock%}
+{% block content %}
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Book List</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th class="text-center"><b>No</b></th>
+                    <th class="text-center"><b>Book Name</b></th>
+                    <th class="text-center"><b>Auther Name</b></th>
+                    <th class="text-center"><b>Book Page</b></th>
+                    <th class="text-center"><b>Book Quantity</b></th>
+                    <th class="text-center"><b>Book Price</b></th>
+                    <th class="text-center"><b>Book Language</b></th>
+                    <th class="text-center"><b>Action</b></th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for books in book%}
+                <tr>
+                    <td class="text-center">{{books.id}}</td>
+                    <td class="text-center">{{books.bookname}}</td>
+                    <td class="text-center">{{books.authername}}</td>
+                    <td class="text-center">{{books.bookpage}}</td>
+                    <td class="text-center">{{books.bookquantity}}</td>
+                    <td class="text-center">{{books.bookprice}}</td>
+                    <td class="text-center">{{books.booklanguage}}</td>
+                    <td class="text-center"><a href="{%url 'buybookdetail' books.id%}" type="button"
+                                               class="btn btn-primary">Buy Book</a></td>
+                </tr>
+                {%endfor%}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{%endblock%}

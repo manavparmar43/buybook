@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block titlecontent %}Return Book table{%endblock%}
+{% block content %}
+{% for message in messages %}
+{% if message.tags == 'success' %}
+<div class="alert alert-success alert-dismissible fade show container w-50" id="success" role="alert">
+        <strong>done!</strong> {{message}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+        </button>
+
+</div>
+{%endif%}
+{% endfor %}
+<div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Return Books table</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">No</th>
+                                            <th class="text-center">Book Name</th>
+                                            <th class="text-center"> Auther Name</th>
+                                            <th class="text-center">Book Page</th>
+
+                                            <th class="text-center">Book Price</th>
+                                            <th class="text-center">Book Language</th>
+                                            <th class="text-center">Username</th>
+                                            <th class="text-center">Phone</th>
+
+                                            <th class="text-center">Action</th>
+
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        {%for buybooks in buybook %}
+                                            <tr>
+                                                <td class="text-center">{{buybooks.id}}</td>
+                                                <td class="text-center"> {{buybooks.bookdetail.bookname}}</td>
+                                                <td class="text-center">{{buybooks.bookdetail.authername}}</td>
+                                                <td class="text-center">{{buybooks.bookdetail.bookpage}}</td>
+                                                <td class="text-center">{{buybooks.bookdetail.bookprice}}</td>
+                                                <td class="text-center">{{buybooks.bookdetail.booklanguage}}</td>
+                                                <td class="text-center">{{buybooks.username}}</td>
+                                                <td class="text-center">{{buybooks.phone}}</td>
+                                                <td class="text-center" id="addbookbtn"><a href="{%url 'add-return-book-sucess' buybooks.id %}" id="addbook"   class="btn btn-success">Add Book</a></td>
+
+                                            </tr>
+                                        {%endfor%}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+</div>
+
+{%endblock%}
+
+{% block script %}
+ {% for message in messages %}
+ {% if message.tags == 'success' %}
+    $('#success').show();
+    $('#addbook').remove();
+    $('#addbookbtn').append(`<a  id='addbook'  class='btn btn-danger'  style='pointer-events: none;cursor: not-allowed;' title='Your book hase been already added'>Added</a>`);
+
+ {%else%}
+    $('#success').hide();
+ {%endif%}
+{% endfor %}
+
+
+{% endblock %}

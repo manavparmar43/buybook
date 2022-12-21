@@ -1,0 +1,112 @@
+{% extends "userbase.html" %}
+{% block titlecontent %}Buy Book Detail{%endblock%}
+{% block content %}
+
+<div class="card shadow mb-4 container">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Your Buy Book Details</h6>
+    </div>
+    <div class="card-body container ">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th class="text-center w-50"><b>Book Data</b></th>
+                        <th class="text-center"><b>Fill Details</b></th>
+                        
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th class="text-center w-50"><b>Book Data</b></th>
+                        <th class="text-center"><b>Fill Details</b></th>
+                        
+                    </tr>
+                </tfoot>
+                <tbody>
+
+                    <tr>
+                        <td class="text-center">Book Name</td>
+                        <td class="text-center">{{bookname}}</td>
+                        
+                        
+                        
+                    </tr>
+                    <tr>
+                        <td class="text-center">Book Auther Name</td>
+                        <td class="text-center">{{authername}}</td>
+                        
+                        
+                        
+                    </tr>
+                    <tr>
+                        <td class="text-center">Book Page</td>
+                        <td class="text-center">{{bookpage}}</td>
+                        
+                        
+                        
+                    </tr>
+                     <tr>
+                        <td class="text-center">Buy Book Quantity</td>
+                        <td class="text-center">{{buybookquantity}}</td>
+
+
+
+                    </tr>
+                    <tr>
+                        <td class="text-center">Book Price</td>
+                        <td class="text-center">{{bookprice}}</td>
+                        
+                        
+                        
+                    </tr>
+                    <tr>
+                        <td class="text-center">Book Language</td>
+                        <td class="text-center">{{booklanguage}}</td>
+                        
+                        
+                        
+                    </tr>
+                    <tr>
+                        <td class="text-center">Username</td>
+                        <td class="text-center">{{username}}</td>
+                        
+                        
+                        
+                    </tr>
+                     <tr>
+                        <td class="text-center">Buy Book Date</td>
+                        <td class="text-center" style="color:green;"><b>{{buydate}}</b></td>
+
+
+
+                    </tr>
+                     <tr>
+                        <td class="text-center">Return Book Date <b>(YYYY--MM--DD)</b></td>
+                        <td class="text-center" style="color:red;"><b>{{returndates}}</b></td>
+
+
+
+                    </tr>
+                    <tr>
+                        <td class="text-center">Phone Number</td>
+                        <td class="text-center">{{phone}}</td>
+                        
+                        
+                        
+                    </tr>
+                    
+              
+                </tbody>
+            </table><h5 class="text-center" style="color:Green;"><b>Book is Successfully Buy You Can Check <font style="color: red;">Show Buy Book </font>Table</b></h5><br>
+            <div class="container w-50  justify-content-center">
+                <a href="/user/" class="btn btn-success btn-user btn-block"
+                        style="color:black; font-size:20px;">
+                    <b>Back</b>
+                </a>
+            </div></br>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

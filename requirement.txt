@@ -1,0 +1,8 @@
+django == 4.1
+psycopg2 == 2.9.5
+djangorestframework
+djangorestframework-simplejwt == 5.2.2
+psycopg2-binary
+attr
+django-cors-headers
+django-environ

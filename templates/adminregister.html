@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+{% block titlecontent %}Add Admin{%endblock%}
+{% block content %}
+{% for message in messages %}
+{% if message.tags == 'success' %}
+<div class="alert alert-success alert-dismissible fade show container w-50" id="success" role="alert">
+        <strong>Congratulations !</strong> {{message}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+        </button>
+
+</div>
+{%endif%}
+{% endfor %}
+<div id="content-wrapper" class="d-flex flex-column ">
+    <div class="card o-hidden border-0 shadow-lg my-5    w-50  align-self-center  ">
+
+        <div class="card p-0 ">
+            <!-- Nested Row within Card Body -->
+
+
+            <div class="p-5 container">
+                <div class="text-center  ">
+                    <h1 class="h4 text-gray-900 mb-4"><b>ADD USER HERE</b></h1>
+                </div>
+                <form class="user" method="POST">
+                    {%csrf_token%}
+                    <div class="form-group row justify-content-center">
+                        <div class="col-sm-10 mb-3 mb-sm-0 ">
+                            <input type="text" class="form-control form-control-user" name='firstname'
+                                   id="firstname"
+                                   placeholder="Enter the firstname">
+                        </div>
+
+                    </div>
+                    <div class="form-group row justify-content-center">
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control form-control-user" name='lastname'
+                                   id="lastname"
+                                   placeholder="Enter the last name">
+                        </div>
+                    </div>
+                    <div class="form-group row justify-content-center">
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control form-control-user" name="username"
+                                   id="username"
+                                   placeholder="Enter the Username">
+                        </div>
+
+                    </div>
+                    <div class="form-group row justify-content-center">
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control form-control-user" name="email"
+                                   id="email"
+                                   placeholder="Enter the email">
+                        </div>
+
+                    </div>
+                    <div class="form-group row justify-content-center">
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control form-control-user" name="phone"
+                                   id="phone"
+                                   placeholder="Enter the phone">
+                        </div>
+
+                    </div>
+                    <div class="form-group row justify-content-center">
+                        <div class="col-sm-10 mb-3 mb-sm-0">
+                            <input type="password" class="form-control form-control-user"
+                                   id="password" placeholder="Enter the password" name="password">
+                        </div>
+
+
+                    </div>
+                     <div class="form-group row justify-content-center">
+                        <div class="col-sm-10 mb-3 mb-sm-0">
+                            <input type="password" class="form-control form-control-user"
+                                   id="exampleInputPassword" placeholder="Enter the confirmpassword" name="confirmpassword">
+                        </div>
+
+                    </div>
+                    <div class="form-group row justify-content-center">
+
+                            <select class="form-select rounded-pill" name="choice" aria-label="Default select example" style=" width:80.5%; height:50px; background:white;">
+                              <option selected>Select Choice</option>
+                              <option value="student">Student</option>
+                              <option value="admin">Admin</option>
+                            </select>
+
+
+                    </div>
+                    <div class="form-group row justify-content-center">
+                        <div class="col-sm-10 mb-3 mb-sm-0">
+                        {% for message in messages %}
+                            {% if message.tags == 'info' %}
+                                <h6 id='messege'style="color:red; margin-left:10px;"><b>&#10060;&nbsp;{{message}}</b></h6>
+                            {%endif%}
+                        {% endfor %}
+
+                        </div>
+
+
+                    </div>
+                    <div class="container w-50  justify-content-center">
+                        <button type="submit"   class="btn btn-success btn-user btn-block"
+                                style="color:black; font-size:20px;" >
+                            <b>ADD ADMIN</b>
+                        </button>
+                    </div>
+
+
+
+                </form>
+
+
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block script %}
+ {% for message in messages %}
+ {% if message.tags == 'success' %}
+    $('#success').show();
+
+ {%else%}
+    $('#success').hide();
+ {%endif%}
+{% endfor %}
+
+
+{% endblock %}
+
+
